@@ -31,6 +31,8 @@ namespace GeNuSys {
 
 		static typename TypeTraits<Type>::RationalType div(const Type& a, const Type& b);
 
+		static bool isEpsilon(const Type& value);
+
 	};
 
 
