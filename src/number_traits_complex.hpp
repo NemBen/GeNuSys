@@ -62,17 +62,18 @@ namespace GeNuSys {
 	typename TypeTraits<std::complex<Type> >::RealType NumberTraits<std::complex<Type> >::sqrt(const std::complex<Type>& value) {
 		typedef typename TypeTraits<Type>::RealType RealType;
 
-		if (NumberTraits<Type>::abs(value.imag()) <= NumberTraits<typename TypeTraits<Type>::AbsType>::epsilon) {
+		if (NumberTraits<Type>::isEpsilon(value.imag())) {
 			if (value.real() < 0) {
-				return std::complex<RealType>(NumberTraits<Type>::zero, NumberTraits<RealType>::sqrt(-value.real()));
+				return std::complex<RealType>(NumberTraits<RealType>::zero, NumberTraits<Type>::sqrt(-value.real()));
 			} else {
-				return std::complex<RealType>(NumberTraits<RealType>::sqrt(value.real()), NumberTraits<Type>::zero);
+				return std::complex<RealType>(NumberTraits<Type>::sqrt(value.real()), NumberTraits<RealType>::zero);
 			}
 		}
 
 		RealType l = abs(value);
 		RealType re = NumberTraits<RealType>::sqrt((value.real() + l) / 2);
 		RealType im = NumberTraits<RealType>::sgn(value.imag()) * NumberTraits<RealType>::sqrt((-value.real() + l) / 2);
+
 		return std::complex<RealType>(re, im);
 	}
 
@@ -86,6 +87,7 @@ namespace GeNuSys {
 
 	template <class Type>
 	bool complex_comparator(const std::complex<Type>& a, const std::complex<Type>& b) {
-	 return real(a) == real(b) ? imag(a) < imag(b) : real(a) < real(b);
+		return real(a) == real(b) ? imag(a) < imag(b) : real(a) < real(b);
 	}
+
 }

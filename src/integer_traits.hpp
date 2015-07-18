@@ -3,12 +3,9 @@
 namespace GeNuSys {
 
 	template<typename Type>
-	ExtendedGCD<Type>::ExtendedGCD(
-		const Type& a,
-		const Type& cA,
-		const Type& b,
-		const Type& cB,
-		const Type& gcd):a(a),cA(cA),b(b),cB(cB),gcd(gcd) {
+	ExtendedGCD<Type>::ExtendedGCD(const Type& a, const Type& coefA,
+		const Type& b, const Type& coefB,
+		const Type& gcd):a(a),coefA(coefA),b(b),coefB(coefB),gcd(gcd) {
 	}
 
 	template<typename Type>

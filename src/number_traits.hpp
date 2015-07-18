@@ -28,6 +28,7 @@ namespace GeNuSys {
 				result *= acc;
 			}
 		}
+
 		return result;
 	}
 
@@ -42,7 +43,7 @@ namespace GeNuSys {
 		do {
 			f = NumberTraits<RealType>::pow(g, n) - r;
 			g -= f / (NumberTraits<RealType>::pow(g, n-1) * n);
-		} while (NumberTraits<RealType>::abs(f) > NumberTraits<RealType>::epsilon);
+		} while (!NumberTraits<RealType>::isEpsilon(f));
 
 		return g;
 	}

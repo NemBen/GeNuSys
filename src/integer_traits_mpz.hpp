@@ -9,7 +9,7 @@ namespace GeNuSys {
 	}
 
 	template<>
-	mpz_class IntegerTraits<mpz_class>::idiv(const mpz_class& a, const mpz_class& b) {
+	mpz_class IntegerTraits<mpz_class>::div(const mpz_class& a, const mpz_class& b) {
 		mpz_class result;
 		mpz_fdiv_q(result.get_mpz_t(), a.get_mpz_t(), b.get_mpz_t());
 

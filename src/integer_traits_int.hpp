@@ -6,7 +6,7 @@ namespace GeNuSys {
 	}
 
 	template<>
-	int IntegerTraits<int>::idiv(const int& a, const int& b) {
+	int IntegerTraits<int>::div(const int& a, const int& b) {
 		return a / b;
 	}
 

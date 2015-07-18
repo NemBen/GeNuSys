@@ -1,5 +1,5 @@
-#ifndef GENUSYS_ELEMENT_TRAITS_H_
-#define GENUSYS_ELEMENT_TRAITS_H_
+#ifndef GENUSYS_NUMBER_TRAITS_H_
+#define GENUSYS_NUMBER_TRAITS_H_
 
 #include "type_traits.h"
 #include "integer_traits.h"
@@ -35,8 +35,6 @@ namespace GeNuSys {
 
 	};
 
-
-
 }
 
 // Include implementation
@@ -51,4 +49,4 @@ namespace GeNuSys {
 	#include "number_traits_mpf.hpp"
 #endif // __unix__
 
-#endif // GENUSYS_ELEMENT_TRAITS_H_
+#endif // GENUSYS_NUMBER_TRAITS_H_
