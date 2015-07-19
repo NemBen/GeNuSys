@@ -237,7 +237,7 @@ namespace GeNuSys {
 
 			Operations::mat_add(*this, mat);
 
-			return result;
+			return *this;
 		}
 
 		template<typename Type>
@@ -275,7 +275,7 @@ namespace GeNuSys {
 
 			Operations::mat_sub(*this, mat);
 
-			return result;
+			return *this;
 		}
 
 		template<typename Type>

@@ -195,7 +195,7 @@ namespace GeNuSys {
 
 			Operations::vct_sub(*this, vct);
 
-			return result;
+			return *this;
 		}
 
 		template<typename Type>
@@ -204,7 +204,7 @@ namespace GeNuSys {
 
 			Operations::vct_sub(*this, vct);
 
-			return result;
+			return *this;
 		}
 
 		template<typename Type>
