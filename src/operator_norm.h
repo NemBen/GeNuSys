@@ -26,11 +26,7 @@ namespace GeNuSys {
 
 		public:
 
-			OperatorNorm();
-
 			OperatorNorm(const Matrix<BaseType>& mat);
-
-			OperatorNorm(const JordanForm<BaseType>& jordanForm);
 
 			template<typename Type>
 			struct NormType {

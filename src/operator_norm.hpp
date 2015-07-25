@@ -5,16 +5,11 @@ namespace GeNuSys {
 	namespace LinAlg {
 
 		template<typename BaseType>
-		OperatorNorm<BaseType>::OperatorNorm() {
-			S = Matrix<ComplexRealType>::identity(1,1);
-			invS = Matrix<ComplexRealType>::identity(1,1);
-		}
-
-		template<typename BaseType>
 		OperatorNorm<BaseType>::OperatorNorm(const Matrix<BaseType>& mat) {
 			typedef typename TypeTraits<ComplexRealType>::AbsType AbsType;
+			typedef typename TypeTraits<BaseType>::RationalType RationalType;
 
-			JordanForm<BaseType> jordanForm = Algorithms::getJordanForm(mat);
+			JordanForm<RationalType> jordanForm = Algorithms::getJordanForm(Algorithms::invert(mat));
 
 			const unsigned int N = jordanForm.J.rows;
 
@@ -26,35 +21,6 @@ namespace GeNuSys {
 			for (int i = N - 1; i >= 0; ++i) {
 				if (first || jordanForm.J(i, i) != act) {
 					mu = NumberTraits<AbsType>::one - NumberTraits<ComplexRealType>::abs(jordanForm.J(i, i));
-					muPow = mu;
-					first = false;
-				} else {
-					muPow *= mu;
-				}
-				D.set(i, i, muPow);
-			}
-
-			S = jordanForm.P * D;
-			invS = Algorithms::invert(S);
-		}
-
-		template<typename BaseType>
-		OperatorNorm<BaseType>::OperatorNorm(const JordanForm<BaseType>& jordanForm) {
-			typedef typename TypeTraits<ComplexRealType>::AbsType AbsType;
-
-			const unsigned int N = jordanForm.J.rows;
-
-			Matrix<ComplexRealType> D = Matrix<ComplexRealType>::identity(N, N);
-
-			bool first = true;
-			ComplexRealType act;
-			AbsType mu, muPow;
-			for (int i = N - 1; i >= 0; --i) {
-				if (first || jordanForm.J(i, i) != act) {
-					mu = NumberTraits<AbsType>::one - NumberTraits<ComplexRealType>::abs(jordanForm.J(i, i));
-					if (mu <= NumberTraits<AbsType>::zero) {
-						mu = NumberTraits<AbsType>::one;
-					}
 					muPow = mu;
 					first = false;
 				} else {
