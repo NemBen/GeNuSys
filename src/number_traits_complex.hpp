@@ -23,6 +23,8 @@ namespace GeNuSys {
 
 		static typename TypeTraits<std::complex<Type> >::RationalType div(const std::complex<Type>& a, const std::complex<Type>& b);
 
+		static bool isEpsilon(const std::complex<Type>& value);
+
 	};
 
 	template<typename Type>
@@ -83,6 +85,11 @@ namespace GeNuSys {
 		Type lenSqr = absSqr(b);
 
 		return  std::complex<typename TypeTraits<Type>::RationalType>(NumberTraits<Type>::div(mul.real(), lenSqr), NumberTraits<Type>::div(mul.imag(), lenSqr));
+	}
+
+	template<typename Type>
+	bool NumberTraits<std::complex<Type> >::isEpsilon(const std::complex<Type>& value) {
+		return absSqr(value) <= NumberTraits<typename TypeTraits<std::complex<Type> >::AbsSqrType>::epsilon * NumberTraits<typename TypeTraits<std::complex<Type> >::AbsSqrType>::epsilon;
 	}
 
 	template <class Type>

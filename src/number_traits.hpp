@@ -49,7 +49,7 @@ namespace GeNuSys {
 	}
 
 	template<typename Type>
-	bool isEpsilon(const Type& value) {
+	bool NumberTraits<Type>::isEpsilon(const Type& value) {
 		return abs(value) <= NumberTraits<typename TypeTraits<Type>::AbsType>::epsilon;
 	}
 
