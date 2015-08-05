@@ -18,9 +18,12 @@ namespace GeNuSys {
 			bool first = true;
 			ComplexRealType act;
 			AbsType mu, muPow;
-			for (int i = N - 1; i >= 0; ++i) {
+			for (int i = N - 1; i >= 0; --i) {
 				if (first || jordanForm.J(i, i) != act) {
 					mu = NumberTraits<AbsType>::one - NumberTraits<ComplexRealType>::abs(jordanForm.J(i, i));
+					if (NumberTraits<AbsType>::isEpsilon(mu)) {
+						mu = NumberTraits<AbsType>::one;
+					}
 					muPow = mu;
 					first = false;
 				} else {
