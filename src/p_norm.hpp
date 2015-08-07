@@ -292,6 +292,10 @@ namespace GeNuSys {
 		typename PNorm<00>::template NormType<Type>::Value PNorm<00>::norm(const SparseVector<Type>& vct) {
 			typedef typename TypeTraits<Type>::AbsType AbsType;
 
+			if (vct.size() == 0) {
+				return NumberTraits<AbsType>::zero;
+			}
+
 			AbsType max = NumberTraits<Type>::abs(vct.elem[0].value);
 			for (unsigned int i = 1; i < vct.size(); ++i) {
 				AbsType abs = NumberTraits<Type>::abs(vct.elem[i].value);
