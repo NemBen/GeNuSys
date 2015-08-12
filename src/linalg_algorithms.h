@@ -125,6 +125,9 @@ namespace GeNuSys {
 
 			template<typename Type>
 			static SchurForm<Type> getSchurForm(const Matrix<Type>& mat);
+
+			template<typename Type>
+			static typename TypeTraits<typename TypeTraits<typename TypeTraits<Type>::ComplexType>::RealType>::AbsType getSpectralRadius(const Matrix<Type>& mat);
 			
 			template<typename Type>
 			static unsigned int getRank(const Matrix<Type>& mat);

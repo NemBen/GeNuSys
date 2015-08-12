@@ -361,6 +361,23 @@ namespace GeNuSys {
 		}
 
 		template<typename Type>
+		typename TypeTraits<typename TypeTraits<typename TypeTraits<Type>::ComplexType>::RealType>::AbsType Algorithms::getSpectralRadius(const Matrix<Type>& mat) {
+			typedef typename TypeTraits<typename TypeTraits<Type>::ComplexType>::RealType ComplexRealType;
+			typedef typename TypeTraits<ComplexRealType>::AbsType AbsType;
+
+			SchurForm<Type> schurForm = getSchurForm(mat);
+			AbsType max = NumberTraits<ComplexRealType>::abs(schurForm.U.elem[0]);
+			for (unsigned int i = 1, idx = schurForm.U.cols + 2; i < schurForm.U.rows; ++i, idx += schurForm.U.cols + 1) {
+				AbsType val = NumberTraits<ComplexRealType>::abs(schurForm.U.elem[idx]);
+				if (val > max) {
+					max = val;
+				}
+			}
+
+			return max;
+		}
+
+		template<typename Type>
 		unsigned int Algorithms::getRank(const Matrix<Type>& mat) {
 			typedef typename TypeTraits<Type>::RationalType RationalType;
 			typedef typename TypeTraits<RationalType>::AbsType AbsType;
