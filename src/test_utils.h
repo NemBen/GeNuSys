@@ -12,10 +12,16 @@ namespace GeNuSys {
 		struct TestUtils {
 
 			template<typename T>
+			static GeNuSys::LinAlg::Vector<T> randomVector(unsigned int length, unsigned int range);
+			
+			template<typename T>
+			static GeNuSys::LinAlg::SparseVector<T> randomSparseVector(unsigned int length, unsigned int range, double sparseness);
+
+			template<typename T>
 			static GeNuSys::LinAlg::Matrix<T> randomMatrix(unsigned int rows, unsigned int cols, unsigned int range);
 
 			template<typename T>
-			static GeNuSys::LinAlg::Vector<T> randomVector(unsigned int length, unsigned int range);
+			static GeNuSys::LinAlg::SparseMatrix<T> randomSparseMatrix(unsigned int rows, unsigned int cols, unsigned int range, double sparseness);
 
 			template<typename T, typename S>
 			static bool equals(const GeNuSys::LinAlg::Vector<T>& vctA, const GeNuSys::LinAlg::Vector<S>& vctB);

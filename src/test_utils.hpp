@@ -4,6 +4,27 @@ namespace GeNuSys {
 	namespace Tests {
 
 		template<typename T>
+		GeNuSys::LinAlg::Vector<T> TestUtils::randomVector(unsigned int length, unsigned int range) {
+			GeNuSys::LinAlg::Vector<T> result(length);
+			for (unsigned int i = 0; i < length; ++i) {
+				result.set(i, GeNuSys::TypeTraits<int>::template asType<T>(rand() % (2 * range + 1) - range));
+			}
+
+			return result;
+		}
+
+		template<typename T>
+		GeNuSys::LinAlg::SparseVector<T> TestUtils::randomSparseVector(unsigned int length, unsigned int range, double sparseness) {
+			GeNuSys::LinAlg::SparseVector<T> result(length);
+			unsigned int filled = (unsigned int)(sparseness * length);
+			for (unsigned int i = 0; i < filled; ++i) {
+				result.set(rand() % length, GeNuSys::TypeTraits<int>::template asType<T>(rand() % (2 * range + 1) - range));
+			}
+
+			return result;
+		}
+
+		template<typename T>
 		GeNuSys::LinAlg::Matrix<T> TestUtils::randomMatrix(unsigned int rows, unsigned int cols, unsigned int range) {
 			GeNuSys::LinAlg::Matrix<T> result(rows, cols);
 			for (unsigned int i = 0; i < rows; ++i) {
@@ -16,10 +37,11 @@ namespace GeNuSys {
 		}
 
 		template<typename T>
-		GeNuSys::LinAlg::Vector<T> TestUtils::randomVector(unsigned int length, unsigned int range) {
-			GeNuSys::LinAlg::Vector<T> result(length);
-			for (unsigned int i = 0; i < length; ++i) {
-				result.set(i, GeNuSys::TypeTraits<int>::template asType<T>(rand() % (2 * range + 1) - range));
+		GeNuSys::LinAlg::SparseMatrix<T> TestUtils::randomSparseMatrix(unsigned int rows, unsigned int cols, unsigned int range, double sparseness) {
+			GeNuSys::LinAlg::SparseMatrix<T> result(rows, cols);
+			unsigned int filled = (unsigned int)(sparseness * (rows * cols));
+			for (unsigned int i = 0; i < filled; ++i) {
+				result.set(rand() % rows, rand() % cols, GeNuSys::TypeTraits<int>::template asType<T>(rand() % (2 * range + 1) - range));
 			}
 
 			return result;
